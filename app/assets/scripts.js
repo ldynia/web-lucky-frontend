@@ -28,7 +28,8 @@ function ajaxRequest(url, callback) {
 // document ready
 window.ready(function() {
   document.getElementById('btn-recommend').addEventListener('click', function() {
-    ajaxRequest('api/v1/movies/recommend', function(response) {
+    var endpoint = (Math.random() < 0.5) ? 'api/v1/movies/recommend' : 'api/v1/music/recommend';
+    ajaxRequest(endpoint, function(response) {
       // extract data from response
       var data = JSON.parse(response);
       var poster = data[0].poster;
