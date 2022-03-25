@@ -9,4 +9,3 @@ Frontend applications that utilizes:
 ```bash
 docker build -t lucky-frontend .
 ```
-
