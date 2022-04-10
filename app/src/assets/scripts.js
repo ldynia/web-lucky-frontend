@@ -28,7 +28,12 @@ function ajaxRequest(url, callback) {
 // document ready
 window.ready(function() {
   document.getElementById('btn-recommend').addEventListener('click', function() {
+    // Change background color
+    document.body.style.backgroundColor = "#0e263c";
+
+    // Select endpoint randomly
     var endpoint = (Math.random() < 0.5) ? 'api/v1/movies/recommend' : 'api/v1/music/recommend';
+
     ajaxRequest(endpoint, function(response) {
       // extract data from response
       var data = JSON.parse(response);
