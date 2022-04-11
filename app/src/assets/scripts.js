@@ -27,21 +27,35 @@ function ajaxRequest(url, callback) {
 
 // document ready
 window.ready(function() {
-  document.getElementById('btn-recommend').addEventListener('click', function() {
+  // Handle movie recommendation button
+  document.getElementById('btn-recommend-movie').addEventListener('click', function() {
     // Change background color
-    document.body.style.backgroundColor = "#0e263c";
+    document.body.style.backgroundColor = "#290e3c";
 
-    // Select endpoint randomly
-    var endpoint = (Math.random() < 0.5) ? 'api/v1/movies/recommend' : 'api/v1/music/recommend';
-
-    ajaxRequest(endpoint, function(response) {
+    ajaxRequest('api/v1/movies/recommend', function(response) {
       // extract data from response
       var data = JSON.parse(response);
       var poster = data[0].poster;
       var title = data[0].title;
       // update DOM
-      document.getElementsByTagName('img')[0].src = poster;
-      document.getElementsByTagName('p')[0].textContent = title;
+      document.getElementById('cover').src = poster;
+      document.getElementById('recommendation').innerText = title;
+    });
+  });
+
+  // Handle music recommendation button
+  document.getElementById('btn-recommend-music').addEventListener('click', function() {
+    // Change background color
+    document.body.style.backgroundColor = "#0e263c";
+
+    ajaxRequest('api/v1/music/recommend', function(response) {
+      // extract data from response
+      var data = JSON.parse(response);
+      var poster = data[0].poster;
+      var title = data[0].title;
+      // update DOM
+      document.getElementById('cover').src = poster;
+      document.getElementById('recommendation').innerText = title;
     });
   });
 });
